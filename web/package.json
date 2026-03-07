@@ -1,0 +1,28 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node -e \"const fs=require('fs'); const path=require('path'); const src=path.join(__dirname,'../data/raw-zone/data_quality_reports'); const dest=path.join(__dirname,'public/reports'); if(fs.existsSync(src)){ fs.mkdirSync(dest,{recursive:true}); fs.readdirSync(src).filter(f=>f.endsWith('.html')).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dest,f))); }\"",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "recharts": "^3.8.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
