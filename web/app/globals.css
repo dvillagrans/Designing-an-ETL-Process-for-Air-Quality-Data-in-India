@@ -1,141 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Inter:wght@300;400&display=swap');
 @import "tailwindcss";
 
 :root {
-  --c-bg:     #030914;
-  --c-cyan:   #06b6d4;
-  --c-amber:  #f59e0b;
-  --c-violet: #8b5cf6;
+  --bg-base: #0a0b08;
+  --bg-surface: #0f1009;
+  --bg-elevated: #141508;
+
+  --color-primary: #7aad4a;
+  --color-primary-dim: #4a6b2a;
+  --color-primary-muted: rgba(122, 173, 74, 0.08);
+  --color-primary-border: rgba(122, 173, 74, 0.2);
+
+  --color-amber: #c4832a;
+  --color-amber-muted: rgba(196, 131, 42, 0.1);
+
+  --color-text-primary: #e8e4d4;
+  --color-text-secondary: #7a7560;
+  --color-text-tertiary: #3d3c30;
+
+  --color-border: rgba(232, 228, 212, 0.07);
+  --color-border-hover: rgba(232, 228, 212, 0.14);
+
+  --aqi-good: #4ade80;
+  --aqi-satisf: #a3e635;
+  --aqi-moderate: #facc15;
+  --aqi-poor: #fb923c;
+  --aqi-very-poor: #f87171;
+  --aqi-severe: #c084fc;
+
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-ui: 'Inter', system-ui, sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--c-bg);
-  --color-foreground: #e2e8f0;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-base);
+  --color-foreground: var(--color-text-primary);
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--c-bg);
-  color: #e2e8f0;
-  font-family: var(--font-sans), Arial, sans-serif;
+  background: var(--bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-ui);
 }
 
-/* ── Scrollbar ──────────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-ui { font-family: var(--font-ui); }
+.font-mono { font-family: var(--font-mono); }
+
+.page-bg {
+  background-color: var(--bg-base);
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.4) 100%),
+    radial-gradient(ellipse at -10% -10%, rgba(122, 173, 74, 0.04) 0%, transparent 50%);
+}
+
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--c-bg); }
-::-webkit-scrollbar-thumb { background: rgba(6,182,212,.3); border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(6,182,212,.55); }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: rgba(122, 173, 74, 0.3); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: rgba(122, 173, 74, 0.55); }
 
-/* ── Glass card ─────────────────────────────────────────── */
-.glass {
-  background: rgba(5,17,35,.55);
-  border: 1px solid rgba(6,182,212,.13);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: border-color .25s ease, box-shadow .25s ease;
-}
-.glass:hover {
-  border-color: rgba(6,182,212,.28);
-  box-shadow: 0 0 28px rgba(6,182,212,.07);
-}
-
-/* ── Gradient text ──────────────────────────────────────── */
-.grad-text {
-  background: linear-gradient(135deg, #67e8f9 0%, #38bdf8 45%, #c4b5fd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.grad-text-amber {
-  background: linear-gradient(135deg, #fde68a 0%, #f59e0b 55%, #fb923c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ── AQI gradient bar ───────────────────────────────────── */
 .aqi-bar {
   background: linear-gradient(
     90deg,
-    #22c55e 0%,
-    #84cc16 18%,
-    #eab308 36%,
-    #f97316 55%,
-    #ef4444 75%,
-    #7c3aed 100%
+    var(--aqi-good) 0%,
+    var(--aqi-satisf) 18%,
+    var(--aqi-moderate) 36%,
+    var(--aqi-poor) 55%,
+    var(--aqi-very-poor) 75%,
+    var(--aqi-severe) 100%
   );
 }
 
-/* ── Nav gradient border ────────────────────────────────── */
-.nav-border {
-  background:
-    linear-gradient(rgba(5,11,20,.9), rgba(5,11,20,.9)) padding-box,
-    linear-gradient(
-      90deg,
-      rgba(6,182,212,.30) 0%,
-      rgba(245,158,11,.20) 50%,
-      rgba(6,182,212,.30) 100%
-    ) border-box;
-  border-bottom: 1px solid transparent;
+/* React Flow overrides */
+.react-flow {
+  background: transparent !important;
 }
 
-/* ── Nav link underline hover ───────────────────────────── */
-.nav-link { position: relative; }
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: var(--c-cyan);
-  border-radius: 999px;
-  transition: width .3s ease;
+.react-flow__node {
+  font-family: var(--font-ui) !important;
 }
-.nav-link:hover::after,
-.nav-link[data-active="true"]::after { width: 100%; }
 
-/* ── KPI glow animations ────────────────────────────────── */
-@keyframes glow-cyan {
-  0%,100% { box-shadow: 0 0 8px rgba(6,182,212,.15); }
-  50%      { box-shadow: 0 0 22px rgba(6,182,212,.38); }
+.react-flow__background {
+  color: rgba(122, 173, 74, 0.08) !important;
 }
-@keyframes glow-green {
-  0%,100% { box-shadow: 0 0 8px rgba(34,197,94,.15); }
-  50%      { box-shadow: 0 0 22px rgba(34,197,94,.32); }
-}
-@keyframes glow-red {
-  0%,100% { box-shadow: 0 0 8px rgba(239,68,68,.15); }
-  50%      { box-shadow: 0 0 22px rgba(239,68,68,.30); }
-}
-.kpi-glow-cyan  { animation: glow-cyan  3.5s ease-in-out infinite; }
-.kpi-glow-green { animation: glow-green 3.5s ease-in-out infinite; }
-.kpi-glow-red   { animation: glow-red   3.5s ease-in-out infinite; }
 
-/* ── Fade-in-up ─────────────────────────────────────────── */
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
+.react-flow__edge-path {
+  stroke: rgba(232, 228, 212, 0.15) !important;
 }
-.fiu   { animation: fade-in-up .6s         ease both; }
-.fiu-2 { animation: fade-in-up .6s  0.12s  ease both; }
-.fiu-3 { animation: fade-in-up .6s  0.24s  ease both; }
-.fiu-4 { animation: fade-in-up .6s  0.36s  ease both; }
 
-/* ── Pipeline flow dots ─────────────────────────────────── */
-@keyframes flow-right {
-  0%   { opacity: 0; transform: translateX(-6px); }
-  50%  { opacity: 1; }
-  100% { opacity: 0; transform: translateX(6px); }
+.react-flow__controls {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
-.flow-anim { animation: flow-right 2s ease-in-out infinite; }
 
-/* ── Ambient blob drift ─────────────────────────────────── */
-@keyframes blob-drift {
-  0%   { transform: scale(1) rotate(0deg); }
-  100% { transform: scale(1.09) rotate(3deg); }
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  color: var(--color-text-secondary) !important;
+  fill: var(--color-text-secondary) !important;
+  border-radius: 0 !important;
 }
-.blob-anim { animation: blob-drift 30s ease-in-out infinite alternate; }
 
+.react-flow__controls-button:hover {
+  background: var(--color-primary-muted) !important;
+}
+
+.react-flow__edge-textbg {
+  fill: var(--bg-base) !important;
+}
+
+.react-flow__minimap {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--color-border) !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
