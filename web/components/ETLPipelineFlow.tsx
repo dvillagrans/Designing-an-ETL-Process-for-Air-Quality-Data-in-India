@@ -81,19 +81,19 @@ const initialNodes: Node[] = [
     id: 'dashboard',
     type: 'outputNode',
     position: { x: 680, y: 280 },
-    data: { label: 'Dashboard AQI', icon: '📊', href: '/dashboard' },
+    data: { label: 'Dashboard AQI', icon: '->', href: '/dashboard' },
   },
   {
     id: 'reports',
     type: 'outputNode',
     position: { x: 840, y: 280 },
-    data: { label: 'Informes', icon: '📄', href: '/reports' },
+    data: { label: 'Informes', icon: '->', href: '/reports' },
   },
   {
     id: 'docs',
     type: 'outputNode',
     position: { x: 1000, y: 280 },
-    data: { label: 'Docs', icon: '📚', href: '/docs' },
+    data: { label: 'Docs', icon: '->', href: '/docs' },
   },
 ];
 

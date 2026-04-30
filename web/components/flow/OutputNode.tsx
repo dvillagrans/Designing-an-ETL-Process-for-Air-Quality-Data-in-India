@@ -19,7 +19,7 @@ export function OutputNode({ data }: NodeProps) {
         (e.currentTarget as HTMLElement).style.borderColor = 'rgba(232, 228, 212, 0.07)';
       }}
     >
-      <span className="text-base block mb-1">{data.icon}</span>
+      <span className="font-mono text-[10px] text-[#7aad4a] block mb-1 tracking-widest">{data.icon}</span>
       <span className="font-mono text-[11px] text-[#7a7560] block">{data.label}</span>
       <Handle
         type="target"
